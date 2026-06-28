@@ -1,0 +1,121 @@
+import streamlit as st
+from utils import save_response
+from datetime import datetime
+
+st.set_page_config(page_title="Curious Circle Survey", page_icon=":clipboard:", layout="centered")
+
+# Initialize session state
+if 'current_question' not in st.session_state:
+    st.session_state.current_question = 0
+if 'responses' not in st.session_state:
+    st.session_state.responses = {}
+
+# Configure branding
+st.markdown("""
+<style>
+body {
+    background-color: #FAF7F2;
+    font-family: 'Inter', sans-serif;
+}
+.question-number {
+    color: #DF577B;
+    font-weight: bold;
+}
+.question-text {
+    color: #2E2A2B;
+    font-family: 'Inter', sans-serif;
+}
+.italic-text {
+    color: #2E2A2B;
+    font-style: italic;
+    font-family: 'Inter', sans-serif;
+}
+.button-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+</style>
+""", unsafe_allow_html=True)
+
+# Placeholder for logo (you'll need to upload your logo image)
+# st.image("logo.png", width=200)
+
+questions = [
+    {
+        "main": "What is your biggest challenge in life right now?",
+        "subtitle": "Please be as detailed as possible. The more specific and detailed you are, the more likely I´ll be able to support you."
+    }
+]
+
+def render_question():
+    question_num = st.session_state.current_question + 1
+    question = questions[st.session_state.current_question]
+    
+    # Display question number and main text
+    st.markdown(f"<p class='question-number'>{question_num}.</p>", unsafe_allow_html=True)
+    st.markdown(f"<p class='question-text'>{question['main']}</p>", unsafe_allow_html=True)
+    
+    # Display subtitle if it exists
+    if question['subtitle']:
+        st.markdown(f"<p class='italic-text'>{question['subtitle']}</p>", unsafe_allow_html=True)
+    
+    # Text area for answer
+    placeholder = "Type your answer here…"
+    response = st.text_area(
+        label="",
+        value=st.session_state.responses.get(st.session_state.current_question, ""),
+        height=200,
+        max_chars=3000,
+        placeholder=placeholder,
+        key=f"answer_{st.session_state.current_question}"
+    )
+    
+    st.session_state.responses[st.session_state.current_question] = response
+
+def render_navigation():
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col4:
+        if st.session_state.current_question < len(questions) - 1:
+            if st.button("Next »", key="next_btn"):
+                st.session_state.current_question += 1
+                st.rerun()
+        else:
+            if st.button("Next »", key="next_btn"):
+                st.session_state.current_question += 1
+                st.rerun()
+    
+    with col1:
+        if st.session_state.current_question > 0:
+            if st.button("« Back", key="back_btn"):
+                st.session_state.current_question -= 1
+                st.rerun()
+
+def render_contact_form():
+    st.markdown("### Contact Information")
+    st.markdown("Lastly, I may want to follow up with a few people personally to learn more about your situation. If you´d be open to chatting for a few minutes (promise not to sell you anything), please leave your contact information below. If not, you can click 'Submit' to end the survey :)")
+    
+    name = st.text_input("Name", key="name_input")
+    phone = st.text_input("Phone", key="phone_input")
+    email = st.text_input("Email", key="email_input")
+    
+    col1, col2, col3, col4 = st.columns(4)
+    
+    with col4:
+        if st.button("Submit", key="submit_btn"):
+            save_response(st.session_state.responses, name, phone, email, circle="Curious")
+            st.success("Thank you for completing the survey! Redirecting...")
+            st.markdown(f"<meta http-equiv='refresh' content='2;url=https://morella-devost.mykajabi.com/deep-dive-survey-thank-you?preview_theme_id=2166678693' />", unsafe_allow_html=True)
+    
+    with col1:
+        if st.button("« Back", key="back_contact_btn"):
+            st.session_state.current_question -= 1
+            st.rerun()
+
+# Main flow
+if st.session_state.current_question < len(questions):
+    render_question()
+    render_navigation()
+else:
+    render_contact_form()
