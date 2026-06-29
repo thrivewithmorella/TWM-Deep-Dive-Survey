@@ -110,7 +110,7 @@ def render_navigation():
 
 def render_contact_form():
     st.markdown("### Contact Information")
-    st.markdown("Lastly, I may want to follow up with a few people personally to learn more about your situation. If you´d be open to chatting for a few minutes (promise not to sell you anything), please leave your contact information below. If not, you can click 'Submit' to end the survey :)")
+    st.markdown("Lastly, I may want to follow up with a few people personally to learn more about your situation. If you´d be open to chatting for a few minutes (promise not to sell you anything), please leave your contact information below. If not, you can click 'Submit' to end the survey :). Once finished I have a gift to thank you!")
     
     name = st.text_input("Name", key="name_input")
     phone = st.text_input("Phone", key="phone_input")
@@ -122,11 +122,13 @@ def render_contact_form():
     with col3:
         if st.button("Submit", key="submit_btn", use_container_width=True):
             save_response(st.session_state.responses, name, phone, email, circle="Active")
-            st.success("Thank you for completing the survey!")
+            st.success("Submitted")
             st.markdown("""
-<a href="https://morella-devost.mykajabi.com/deep-dive-survey-thank-you" target="_blank" style="display: inline-block; background-color: #DF577B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 20px;">
-    Click here to continue
-</a>
+<div style="text-align: center; margin-top: 20px;">
+    <a href="https://morella-devost.mykajabi.com/deep-dive-survey-thank-you" target="_blank" style="display: inline-block; background-color: #9F87BF; color: white; padding: 12px 32px; text-decoration: none; border-radius: 5px; font-weight: 600;">
+        Claim Gift
+    </a>
+</div>
 """, unsafe_allow_html=True)
     
     with col2:
