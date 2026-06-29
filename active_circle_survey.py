@@ -45,11 +45,14 @@ div[data-testid="stButton"] button {
 div[data-testid="stButton"] button:hover {
     background-color: #c94668 !important;
 }
+div[data-testid="stTextArea"] {
+    width: 100% !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
 # Placeholder for logo (you'll need to upload your logo image)
-st.image("assets/Banner.png", width=350)
+st.image("assets/Banner.png", width=600)
 
 questions = [
     {
