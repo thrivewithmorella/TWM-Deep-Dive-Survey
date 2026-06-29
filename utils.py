@@ -23,8 +23,14 @@ def save_response(responses, name, phone, email, circle):
         # Open the Google Sheet by name
         sheet = client.open('Thrive with Morella Surveys').sheet1
         
-        # Prepare the row data
-        row = [str(datetime.now()), circle] + list(responses.values()) + [name, phone, email]
+        # Prepare the row data - get answers in order (0, 1, 2, 3)
+        row = [str(datetime.now()), circle]
+        row.append(responses.get(0, ""))  # Answer 1
+        row.append(responses.get(1, ""))  # Answer 2
+        row.append(responses.get(2, ""))  # Answer 3
+        row.append(responses.get(3, ""))  # Answer 4
+        row.extend([name, phone, email])
+        
         sheet.append_row(row)
         
     except Exception as e:
