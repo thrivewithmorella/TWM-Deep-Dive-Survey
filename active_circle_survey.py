@@ -93,14 +93,14 @@ def render_navigation():
     col1, col2, col3 = st.columns([2, 1, 1])
     
     with col3:
-    if st.button("Submit", key="submit_btn", use_container_width=True):
-        save_response(st.session_state.responses, name, phone, email, circle="Active")
-        st.success("Thank you for completing the survey!")
-        st.markdown("""
-        <a href="https://morella-devost.mykajabi.com/deep-dive-survey-thank-you" target="_blank" style="display: inline-block; background-color: #DF577B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 20px;">
-            Click here to continue
-        </a>
-        """, unsafe_allow_html=True)
+        if st.session_state.current_question < len(questions) - 1:
+            if st.button("Next »", key="next_btn", use_container_width=True):
+                st.session_state.current_question += 1
+                st.rerun()
+        else:
+            if st.button("Next »", key="next_btn", use_container_width=True):
+                st.session_state.current_question += 1
+                st.rerun()
     
     with col2:
         if st.session_state.current_question > 0:
