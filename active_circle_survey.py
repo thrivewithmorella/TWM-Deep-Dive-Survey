@@ -73,17 +73,25 @@ questions = [
     }
 ]
 
-def render_question():
-    question_num = st.session_state.current_question + 1
-    question = questions[st.session_state.current_question]
+def render_navigation():
+    st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([2, 1, 1])
     
-    # Display question number and main text
-    st.markdown(f"<p class='question-number'>{question_num}.</p>", unsafe_allow_html=True)
-    st.markdown(f"<p class='question-text'>{question['main']}</p>", unsafe_allow_html=True)
+    with col3:
+        if st.session_state.current_question < len(questions) - 1:
+            if st.button("Next »", key="next_btn", use_container_width=True):
+                st.session_state.current_question += 1
+                st.rerun()
+        else:
+            if st.button("Next »", key="next_btn", use_container_width=True):
+                st.session_state.current_question += 1
+                st.rerun()
     
-    # Display subtitle if it exists
-    if question['subtitle']:
-        st.markdown(f"<p class='italic-text'>{question['subtitle']}</p>", unsafe_allow_html=True)
+    with col2:
+        if st.session_state.current_question > 0:
+            if st.button("« Back", key="back_btn", use_container_width=True):
+                st.session_state.current_question -= 1
+                st.rerun()
     
     # Text area for answer
     placeholder = "Type your answer here…"
