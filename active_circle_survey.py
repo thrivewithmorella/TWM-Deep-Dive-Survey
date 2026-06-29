@@ -122,13 +122,11 @@ def render_contact_form():
     with col3:
         if st.button("Submit", key="submit_btn", use_container_width=True):
             save_response(st.session_state.responses, name, phone, email, circle="Active")
-            st.success("Thank you for completing the survey! Redirecting...")
+            st.success("Thank you for completing the survey!")
             st.markdown("""
-<script>
-setTimeout(function() {
-    window.location.href = 'https://morella-devost.mykajabi.com/deep-dive-survey-thank-you';
-}, 2000);
-</script>
+<a href="https://morella-devost.mykajabi.com/deep-dive-survey-thank-you" target="_blank" style="display: inline-block; background-color: #DF577B; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-top: 20px;">
+    Click here to continue
+</a>
 """, unsafe_allow_html=True)
     
     with col2:
