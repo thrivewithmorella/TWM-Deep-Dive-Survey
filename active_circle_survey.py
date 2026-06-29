@@ -122,7 +122,7 @@ def render_contact_form():
     with col3:
         if st.button("Submit", key="submit_btn", use_container_width=True):
             save_response(st.session_state.responses, name, phone, email, circle="Active")
-            st.success("Submitted")
+            st.markdown("<p style='text-align: center; color: #2E2A2B; font-size: 16px; margin-bottom: 20px;'>✓ Successfully submitted</p>", unsafe_allow_html=True)
             st.markdown("""
 <div style="text-align: center; margin-top: 20px;">
     <a href="https://morella-devost.mykajabi.com/deep-dive-survey-thank-you" target="_blank" style="display: inline-block; background-color: #9F87BF; color: white; padding: 12px 32px; text-decoration: none; border-radius: 5px; font-weight: 600;">
