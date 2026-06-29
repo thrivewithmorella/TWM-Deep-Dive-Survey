@@ -52,7 +52,7 @@ div[data-testid="stTextArea"] {
 """, unsafe_allow_html=True)
 
 # Placeholder for logo (you'll need to upload your logo image)
-st.image("assets/Banner.png", width=600)
+st.image("assets/Banner.png", width=700)
 
 questions = [
     {
