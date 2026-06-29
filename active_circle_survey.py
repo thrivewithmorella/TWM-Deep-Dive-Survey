@@ -68,8 +68,7 @@ def render_question():
     question_num = st.session_state.current_question + 1
     question = questions[st.session_state.current_question]
     
-    st.markdown(f"<p class='question-number'>{question_num}.</p>", unsafe_allow_html=True)
-    st.markdown(f"<p class='question-text'>{question['main']}</p>", unsafe_allow_html=True)
+    st.markdown(f"<p class='question-number'><span style='color: #DF577B; font-weight: bold;'>{question_num}.</span> {question['main']}</p>", unsafe_allow_html=True)
     
     if question['subtitle']:
         st.markdown(f"<p class='italic-text'>{question['subtitle']}</p>", unsafe_allow_html=True)
