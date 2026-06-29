@@ -39,7 +39,7 @@ body {
 """, unsafe_allow_html=True)
 
 # Placeholder for logo (you'll need to upload your logo image)
-# st.image("logo.png", width=200)
+# st.image("Banner.png", width=200)
 
 questions = [
     {
