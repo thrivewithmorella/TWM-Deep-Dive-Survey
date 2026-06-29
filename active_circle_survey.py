@@ -49,7 +49,7 @@ div[data-testid="stButton"] button:hover {
 """, unsafe_allow_html=True)
 
 # Placeholder for logo (you'll need to upload your logo image)
-st.image("Banner.png", width=200)
+st.image("assets/Banner.png", width=350)
 
 questions = [
     {
