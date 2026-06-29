@@ -123,7 +123,13 @@ def render_contact_form():
         if st.button("Submit", key="submit_btn", use_container_width=True):
             save_response(st.session_state.responses, name, phone, email, circle="Active")
             st.success("Thank you for completing the survey! Redirecting...")
-            st.markdown(f"<meta http-equiv='refresh' content='2;url=https://morella-devost.mykajabi.com/deep-dive-survey-thank-you' />", unsafe_allow_html=True)
+            st.markdown("""
+<script>
+setTimeout(function() {
+    window.location.href = 'https://morella-devost.mykajabi.com/deep-dive-survey-thank-you';
+}, 2000);
+</script>
+""", unsafe_allow_html=True)
     
     with col2:
         if st.button("« Back", key="back_contact_btn", use_container_width=True):
