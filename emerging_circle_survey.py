@@ -24,22 +24,41 @@ body {
 .question-text {
     color: #2E2A2B;
     font-family: 'Inter', sans-serif;
+    margin-bottom: 8px !important;
 }
 .italic-text {
     color: #2E2A2B;
     font-style: italic;
     font-family: 'Inter', sans-serif;
+    margin-bottom: 12px !important;
 }
-.button-container {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+div[data-testid="stButton"] button {
+    background-color: #DF577B !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    font-weight: 600 !important;
+    padding: 8px 16px !important;
+}
+div[data-testid="stButton"] button:hover {
+    background-color: #c94668 !important;
+}
+textarea {
+    border: 1px solid #D0D0D0 !important;
+    border-radius: 4px !important;
+    background-color: #F5F5F5 !important;
+}
+textarea:focus {
+    border: 1px solid #D0D0D0 !important;
+    box-shadow: none !important;
+    background-color: #FFFFFF !important;
+}
+div[data-testid="stTextArea"] {
+    margin-top: 0px !important;
 }
 </style>
 """, unsafe_allow_html=True)
 
-# Placeholder for logo (you'll need to upload your logo image)
-# st.image("Banner.png", width=200)
+st.image("assets/Banner.png", width=700)
 
 questions = [
     {
@@ -56,9 +75,8 @@ def render_question():
     question_num = st.session_state.current_question + 1
     question = questions[st.session_state.current_question]
     
-    # Display question number and main text
-    st.markdown(f"<p class='question-number'>{question_num}.</p>", unsafe_allow_html=True)
-    st.markdown(f"<p class='question-text'>{question['main']}</p>", unsafe_allow_html=True)
+    # Display question number and main text on the same line
+    st.markdown(f"<p class='question-text'><span class='question-number'>{question_num}.</span> {question['main']}</p>", unsafe_allow_html=True)
     
     # Display subtitle if it exists
     if question['subtitle']:
@@ -78,44 +96,57 @@ def render_question():
     st.session_state.responses[st.session_state.current_question] = response
 
 def render_navigation():
-    col1, col2, col3, col4 = st.columns(4)
+    st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([2, 1, 1])
     
-    with col4:
+    with col3:
         if st.session_state.current_question < len(questions) - 1:
-            if st.button("Next »", key="next_btn"):
+            if st.button("Next »", key="next_btn", use_container_width=True):
                 st.session_state.current_question += 1
                 st.rerun()
         else:
-            if st.button("Next »", key="next_btn"):
+            if st.button("Next »", key="next_btn", use_container_width=True):
                 st.session_state.current_question += 1
                 st.rerun()
     
-    with col1:
+    with col2:
         if st.session_state.current_question > 0:
-            if st.button("« Back", key="back_btn"):
+            if st.button("« Back", key="back_btn", use_container_width=True):
                 st.session_state.current_question -= 1
                 st.rerun()
 
 def render_contact_form():
     st.markdown("### Contact Information")
-    st.markdown("Lastly, I may want to follow up with a few people personally to learn more about your situation. If you´d be open to chatting for a few minutes (promise not to sell you anything), please leave your contact information below. If not, you can click 'Submit' to end the survey :)")
+    st.markdown("Lastly, I may want to follow up with a few people personally to learn more about your situation. If you´d be open to chatting for a few minutes (promise not to sell you anything), please leave your contact information below. If not, you can click 'Submit' to end the survey :). When you're done, there's a gift waiting for you!")
     
     name = st.text_input("Name", key="name_input")
     phone = st.text_input("Phone", key="phone_input")
     email = st.text_input("Email", key="email_input")
     
-    col1, col2, col3, col4 = st.columns(4)
+    st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns([2, 1, 1])
     
-    with col4:
-        if st.button("Submit", key="submit_btn"):
-            save_response(st.session_state.responses, name, phone, email, circle="Emerging")
-            st.success("Thank you for completing the survey! Redirecting...")
-            st.markdown(f"<meta http-equiv='refresh' content='2;url=https://morella-devost.mykajabi.com/deep-dive-survey-thank-you?preview_theme_id=2166678693' />", unsafe_allow_html=True)
+    if 'submitted' not in st.session_state:
+        st.session_state.submitted = False
     
-    with col1:
-        if st.button("« Back", key="back_contact_btn"):
-            st.session_state.current_question -= 1
-            st.rerun()
+    if not st.session_state.submitted:
+        with col3:
+            if st.button("Submit", key="submit_btn", use_container_width=True):
+                save_response(st.session_state.responses, name, phone, email, circle="Emerging")
+                st.session_state.submitted = True
+                st.rerun()
+        
+        with col2:
+            if st.button("« Back", key="back_contact_btn", use_container_width=True):
+                st.session_state.current_question -= 1
+                st.rerun()
+    else:
+        with col3:
+            st.markdown("""
+<a href="https://morella-devost.mykajabi.com/deep-dive-survey-thank-you" target="_blank" style="display: block; text-align: center; background-color: #9F87BF; color: white; padding: 12px 32px; text-decoration: none; border-radius: 5px; font-weight: 600;">
+    Claim Gift
+</a>
+""", unsafe_allow_html=True)
 
 # Main flow
 if st.session_state.current_question < len(questions):
