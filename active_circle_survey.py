@@ -33,13 +33,23 @@ body {
 .button-container {
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 5px;
+}
+div[data-testid="stButton"] button {
+    background-color: #DF577B !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    font-weight: 600 !important;
+    padding: 8px 16px !important;
+}
+div[data-testid="stButton"] button:hover {
+    background-color: #c94668 !important;
 }
 </style>
 """, unsafe_allow_html=True)
 
 # Placeholder for logo (you'll need to upload your logo image)
-# st.image("Banner.png", width=200)
+st.image("Banner.png", width=200)
 
 questions = [
     {
