@@ -24,11 +24,13 @@ body {
 .question-text {
     color: #2E2A2B;
     font-family: 'Inter', sans-serif;
+    margin-bottom: 8px !important;
 }
 .italic-text {
     color: #2E2A2B;
     font-style: italic;
     font-family: 'Inter', sans-serif;
+    margin-bottom: 12px !important;
 }
 div[data-testid="stButton"] button {
     background-color: #DF577B !important;
@@ -39,6 +41,19 @@ div[data-testid="stButton"] button {
 }
 div[data-testid="stButton"] button:hover {
     background-color: #c94668 !important;
+}
+textarea {
+    border: 1px solid #D0D0D0 !important;
+    border-radius: 4px !important;
+    background-color: #F5F5F5 !important;
+}
+textarea:focus {
+    border: 1px solid #D0D0D0 !important;
+    box-shadow: none !important;
+    background-color: #FFFFFF !important;
+}
+div[data-testid="stTextArea"] {
+    margin-top: 0px !important;
 }
 </style>
 """, unsafe_allow_html=True)
