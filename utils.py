@@ -4,14 +4,14 @@ from datetime import datetime
 import streamlit as st
 import json
 
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
 
 def save_response(responses, name, phone, email, circle):
     try:
         # Get service account credentials from Streamlit secrets
         service_account_info = st.secrets["google_service_account"]
         
-        # Create credentials from the service account info
+        # Create credentials from the service account info with correct scopes
         credentials = Credentials.from_service_account_info(
             service_account_info,
             scopes=SCOPES
