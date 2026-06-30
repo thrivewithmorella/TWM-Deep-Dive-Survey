@@ -127,7 +127,7 @@ def render_contact_form():
     st.markdown("### Contact Information")
     st.markdown("Lastly, I may want to follow up with a few people personally to learn more about your situation. If you´d be open to chatting for a few minutes (promise not to sell you anything), please leave your contact information below. If not, you can click 'Submit' to end the survey :). When you're done, there's a gift waiting for you!")
     
-    name = st.text_input("Name", key="name_input", on_change=lambda: st.session_state.update(name=st.session_state.name_input))
+name = st.text_input("Name", key="name_input", on_change=lambda: st.session_state.update(name=st.session_state.name_input))
 phone = st.text_input("Phone", key="phone_input", on_change=lambda: st.session_state.update(phone=st.session_state.phone_input))
 email = st.text_input("Email", key="email_input", on_change=lambda: st.session_state.update(email=st.session_state.email_input))
     
