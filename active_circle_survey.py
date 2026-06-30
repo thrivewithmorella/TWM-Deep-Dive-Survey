@@ -127,6 +127,7 @@ def render_contact_form():
     st.markdown("### Contact Information")
     st.markdown("Lastly, I may want to follow up with a few people personally to learn more about your situation. If you´d be open to chatting for a few minutes (promise not to sell you anything), please leave your contact information below. If not, you can click 'Submit' to end the survey :). When you're done, there's a gift waiting for you!")
     
+    # Use HTML input elements instead of Streamlit's text_input
     name = st.text_input("Name", key="name_input")
     phone = st.text_input("Phone", key="phone_input")
     email = st.text_input("Email", key="email_input")
@@ -140,12 +141,12 @@ def render_contact_form():
     if not st.session_state.submitted:
         with col3:
             if st.button("Submit", key="submit_btn", use_container_width=True):
-                # Update session state with form values
-                st.session_state.name = name
-                st.session_state.phone = phone
-                st.session_state.email = email
+                # Get the form values directly from the input elements
+                name = st.session_state.name_input
+                phone = st.session_state.phone_input
+                email = st.session_state.email_input
                 
-                save_response(st.session_state.responses, st.session_state.name, st.session_state.phone, st.session_state.email, circle="Active")
+                save_response(st.session_state.responses, name, phone, email, circle="Active")
                 st.session_state.submitted = True
                 st.rerun()
         
