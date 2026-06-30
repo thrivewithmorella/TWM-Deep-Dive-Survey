@@ -140,7 +140,13 @@ def render_contact_form():
     if not st.session_state.submitted:
         with col3:
             if st.button("Submit", key="submit_btn", use_container_width=True):
-                save_response(st.session_state.responses, st.session_state.name, st.session_state.phone, st.session_state.email, circle="Active")
+                save_response(
+    st.session_state.responses,
+    st.session_state.get("name", ""),
+    st.session_state.get("phone", ""),
+    st.session_state.get("email", ""),
+    circle="Active"
+)
                 st.session_state.submitted = True
                 st.rerun()
         
