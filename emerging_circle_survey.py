@@ -84,12 +84,12 @@ def render_question():
     
     # Text area for answer
     response = st.text_area(
-    label="",
-    value=st.session_state.responses.get(st.session_state.current_question, ""),
-    height=200,
-    max_chars=3000,
-    key=f"answer_{st.session_state.current_question}"
-)
+        label=None,  # Change this line
+        value=st.session_state.responses.get(st.session_state.current_question, ""),
+        height=200,
+        max_chars=3000,
+        key=f"answer_{st.session_state.current_question}"
+    )
     
     st.session_state.responses[st.session_state.current_question] = response
 
