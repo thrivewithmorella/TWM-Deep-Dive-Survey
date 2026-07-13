@@ -55,7 +55,7 @@ textarea:focus {
 div[data-testid="stTextArea"] {
     margin-top: 0px !important;
 }
-div[data-testid="stTextAreaInstructions"] {
+div[data-testid="InputInstructions"] {
     display: none !important;
 }
 </style>
