@@ -83,15 +83,13 @@ def render_question():
         st.markdown(f"<p class='italic-text'>{question['subtitle']}</p>", unsafe_allow_html=True)
     
     # Text area for answer
-    placeholder = "Type your answer here…"
     response = st.text_area(
-        label="",
-        value=st.session_state.responses.get(st.session_state.current_question, ""),
-        height=200,
-        max_chars=3000,
-        placeholder=placeholder,
-        key=f"answer_{st.session_state.current_question}"
-    )
+    label="",
+    value=st.session_state.responses.get(st.session_state.current_question, ""),
+    height=200,
+    max_chars=3000,
+    key=f"answer_{st.session_state.current_question}"
+)
     
     st.session_state.responses[st.session_state.current_question] = response
 
