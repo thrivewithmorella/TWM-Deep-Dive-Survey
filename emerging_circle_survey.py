@@ -55,21 +55,12 @@ textarea:focus {
 div[data-testid="stTextArea"] {
     margin-top: 0px !important;
 }
+div[data-testid="stTextAreaInstructions"] {
+    display: none !important;
+}
 </style>
 """, unsafe_allow_html=True)
-
 st.image("assets/Banner.png", width=700)
-
-questions = [
-    {
-        "main": "What is your biggest challenge in life right now?",
-        "subtitle": "Please be as detailed as possible. The more specific and detailed you are, the more likely I´ll be able to help."
-    },
-    {
-        "main": "What would meaningful support look like for you?",
-        "subtitle": None
-    }
-]
 
 def render_question():
     question_num = st.session_state.current_question + 1
