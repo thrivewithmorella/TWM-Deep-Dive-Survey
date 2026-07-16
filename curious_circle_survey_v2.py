@@ -58,6 +58,9 @@ div[data-testid="stTextArea"] {
 div[data-testid="InputInstructions"] {
     display: none !important;
 }
+div[data-testid="stCheckbox"] {
+    margin-bottom: -15px !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
