@@ -91,12 +91,12 @@ questions = [
             "Burnt out. Exhausted.",
             "Overwhelmed.",
             "Frozen.",
-            "Disconnected from myself and/or from everyone else",
-            "Irritated, angry or even irate",
-            "Anxious, scared, or even panicked",
-            "Stressed",
-            "Tired and wired",
-            "Lonely",
+            "Disconnected from myself and/or from everyone else.",
+            "Irritated, angry or even irate.",
+            "Anxious, scared, or even panicked.",
+            "Stressed.",
+            "Tired and wired.",
+            "Lonely.",
             "Something else"
         ]
     }
