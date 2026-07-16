@@ -59,7 +59,7 @@ div[data-testid="InputInstructions"] {
     display: none !important;
 }
 div[data-testid="stCheckbox"] {
-    margin-bottom: -15px !important;
+    margin-bottom: -10px !important;
 }
 </style>
 """, unsafe_allow_html=True)
