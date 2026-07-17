@@ -118,16 +118,11 @@ def render_question():
     
     # Display checkboxes for each option
     for idx, option in enumerate(question['options']):
-        col1, col2 = st.columns([0.05, 0.95])
-        with col1:
-            is_checked = st.checkbox(
-                label="",
-                value=(idx in current_responses.get("selected", [])),
-                key=f"q{question_num}_opt{idx}",
-                label_visibility="collapsed"
-            )
-        with col2:
-            st.markdown(f"<p style='color: #2E2A2B; font-family: Inter; margin: 0; padding-top: 10px;'>{option}</p>", unsafe_allow_html=True)
+        is_checked = st.checkbox(
+            label=option,
+            value=(idx in current_responses.get("selected", [])),
+            key=f"q{question_num}_opt{idx}"
+        )
         
         if is_checked:
             selected_options.append(idx)
@@ -148,7 +143,6 @@ def render_question():
         "selected": selected_options,
         "other_text": other_text
     }
-
 def render_navigation():
     st.markdown("<div style='height: 20px;'></div>", unsafe_allow_html=True)
     col1, col2, col3 = st.columns([2, 1, 1])
