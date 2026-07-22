@@ -73,12 +73,11 @@ questions = [
         "instruction": "(check all that apply)",
         "type": "multi_checkbox",
         "options": [
-            "Relationship challenges of any kind (with spouses, parents, children, friends, or coworkers) - including communication and boundary challenges.",
-            "Time management and life balance challenges - including difficulty prioritizing yourself.",
+            "Relationship challenges of any kind.",
+            "Time management and life balance challenges.",
             "Difficulty with self-esteem and confidence.",
-            "Physical and/or emotional health challenges - including chronic health issues, and/or difficulty managing anxiety, anger, stress, and irritation.",
-            "Dealing with the effects of trauma",
-            "Challenges in your career or your finances",
+            "Physical and/or emotional health challenges.",
+            "Challenges in your career or your finances.",
             "Something else"
         ]
     },
@@ -91,12 +90,12 @@ questions = [
             "Burnt out. Exhausted.",
             "Overwhelmed.",
             "Frozen.",
-            "Disconnected from myself and/or from everyone else",
-            "Irritated, angry or even irate",
-            "Anxious, scared, or even panicked",
-            "Stressed",
-            "Tired and wired",
-            "Lonely",
+            "Disconnected from myself and/or from everyone else.",
+            "Irritated, angry or even irate.",
+            "Anxious, scared, or even panicked.",
+            "Stressed.",
+            "Tired and wired.",
+            "Lonely.",
             "Something else"
         ]
     },
